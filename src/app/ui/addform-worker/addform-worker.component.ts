@@ -15,8 +15,8 @@ export class AddformWorkerComponent implements OnInit {
   errorRed = false;
 
 
-  public phoneMask = ' (000) 000-00-00';
-  public customPatterns = { 'R': { pattern: new RegExp('\[а-яА-Яa-zA-Z\]')} }
+  phoneMask = ' (000) 000-00-00';
+  customPatterns = { 'R': { pattern: new RegExp('\[а-яА-Яa-zA-Z\]')} }
 
 
   addForm: FormGroup;
