@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MyWorkerType, MyWorker } from 'src/app/shared/worker.model';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -7,26 +8,67 @@ import { MyWorkerType, MyWorker } from 'src/app/shared/worker.model';
   templateUrl: './addform-worker.component.html',
   styleUrls: ['./addform-worker.component.css'],
 })
+
 export class AddformWorkerComponent implements OnInit {
   myWorkerType = MyWorkerType;
-  name: string;
-  surname: string;
-  type = 0;
-  phone_number: string;
-  public phoneMask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/]
+  
+  errorRed = false;
+
+
+  public phoneMask = ' (000) 000-00-00';
+  public customPatterns = { 'R': { pattern: new RegExp('\[а-яА-Яa-zA-Z\]')} }
+
+
+  addForm: FormGroup;
 
   @Output() addWorker = new EventEmitter<MyWorker>();
 
   constructor() {}
 
-  ngOnInit(): void {}
-
-  onAddWorker() {
-    this.addWorker.emit({
-      name: this.name,
-      surname: this.surname,
-      type: this.type,
-      phone_number: this.phone_number,
-    });
+  ngOnInit(): void {
+    this.addForm = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      surname: new FormControl('', [Validators.required]),
+      phone_number: new FormControl('', [Validators.required]),
+      type: new FormControl(0),
+    })
   }
+
+  isControlInvalid(controlName: string): boolean {
+    const control = this.addForm.controls[controlName];
+    const result = control.invalid;
+    return result;
+  }
+
+  onAddWorker(first_condition,second_condition,third_condition) {
+    if ((first_condition==true)&&(second_condition==true)&&(third_condition==true))
+    {
+      this.addWorker.emit({
+        name: this.addForm.controls['name'].value,
+        surname: this.addForm.controls['surname'].value,
+        type: this.addForm.controls['type'].value,
+        phone_number: this.addForm.controls['phone_number'].value,
+      });
+      this.errorRed = false;
+    }
+    else
+      this.errorRed = true; 
+  }
+
+  getBorderColor(valid){
+    if ((valid==false)&&(this.errorRed==true)){
+      return {'border-color': 'red'};
+    }
+    else if ((valid==false)&&(this.errorRed==false)){
+      return {'border-color': 'grey'};
+    }
+    else
+    {
+      return {'border-color': 'green'};
+    }
+  }
+
 }
+
+
+

@@ -1,0 +1,7 @@
+input, select{
+    border-width: 2px;
+}
+
+select{
+    border-color: grey;
+}

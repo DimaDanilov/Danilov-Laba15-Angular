@@ -1,41 +1,86 @@
-<div class="row mb-3">
-  <div class="col-12 mb-2">
-    <h5>Добавить сотрудника</h5>
-  </div>
-  <div class="col-3">
-    <input
-      type="text"
-      class="form-control"
-      placeholder="Имя"
-      [(ngModel)]="name"
-    />
-  </div>
-  <div class="col-3">
-    <input
-      type="text"
-      class="form-control"
-      placeholder="Фамилия"
-      [(ngModel)]="surname"
-    />
-  </div>
-  <div class="col-3">
-    <select class="custom-select" [(ngModel)]="type">
-      <option [ngValue]="myWorkerType.programmer">Программист</option>
-      <option [ngValue]="myWorkerType.designer">Дизайнер</option>
-      <option [ngValue]="myWorkerType.copywriter">Рекламщик</option>
-      <option [ngValue]="myWorkerType.manager">Менеджер</option>
-    </select>
-  </div>
-  <div class="col-3">
-    <input
-      type="text"
-      class="form-control"
-      placeholder="Номер телефона"
-      [(ngModel)]="phone_number" 
-      [textMask]="{mask: phoneMask}"
-    />
-  </div>
-  <div class="col-12 mt-3">
-    <button class="btn btn-primary btn-sm" (click)="onAddWorker()">Добавить</button>
-  </div>
+<div class="mb-3">
+  
+  <form [formGroup]="addForm" class="mb-3 row col-12">
+
+    <div class="col-12 mb-2">
+      <h5>Добавить сотрудника</h5>
+    </div>
+
+    <div class="col-3">
+
+      <input 
+        formControlName="name" 
+        class="form-control" 
+        placeholder="Имя"
+        [patterns]="customPatterns"
+        mask="R*"
+        [ngStyle]="getBorderColor(!isControlInvalid('name'))"
+      >
+
+      <div 
+        class="error" 
+        *ngIf="isControlInvalid('name')&&(errorRed)" 
+        [ngStyle]="{'color': 'red'}"> Введите имя 
+      </div>
+
+    </div>
+
+    <div class="col-3">
+
+      <input 
+        formControlName="surname" 
+        class="form-control" 
+        placeholder="Фамилия" 
+        [patterns]="customPatterns"
+        mask="R*"
+        [ngStyle]="getBorderColor(!isControlInvalid('surname'))"
+      >
+
+      <div class="error" 
+        *ngIf="isControlInvalid('surname')&&(errorRed)" 
+        [ngStyle]="{'color': 'red'}"
+      > Введите фамилию
+      </div>
+
+    </div>
+
+    <div class="col-3">
+      <select class="custom-select" formControlName="type">
+        <option [ngValue]="myWorkerType.programmer">Программист</option>
+        <option [ngValue]="myWorkerType.designer">Дизайнер</option>
+        <option [ngValue]="myWorkerType.copywriter">Рекламщик</option>
+        <option [ngValue]="myWorkerType.manager">Менеджер</option>
+      </select>
+    </div>
+
+    <div class="col-3">
+
+      <input 
+        formControlName="phone_number" 
+        class="form-control" 
+        placeholder="Номер телефона" 
+        mask = {{phoneMask}} 
+        prefix="+7"
+        [dropSpecialCharacters]="false"
+        [ngStyle]="getBorderColor(!isControlInvalid('phone_number'))"
+      >
+
+      <div class="error" 
+        *ngIf="isControlInvalid('phone_number')&&(errorRed)" 
+        [ngStyle]="{'color': 'red'}"
+      > Номер телефона введен неверно </div>
+    </div>
+
+    <div class="col-3">
+
+      <button type="submit" 
+        class="btn btn-primary btn-sm mt-3" 
+        (click)="onAddWorker(!isControlInvalid('name'), !isControlInvalid('surname'), !isControlInvalid('phone_number'))"
+      > Добавить 
+      </button>
+
+    </div>
+    
+  </form>
+
 </div>

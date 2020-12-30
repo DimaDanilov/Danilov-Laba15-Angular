@@ -33,6 +33,7 @@ export class AppComponent {
         : 0;
     worker.id = id;
     this.workers.push(worker);
+    console.log(worker);
   }
 
   onEditById(new_worker){
