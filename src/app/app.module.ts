@@ -20,17 +20,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     ReactiveFormsModule,
     NgbModule,
     BrowserAnimationsModule,
-    NgxMaskModule.forRoot(
-      // public customPatterns = { '0': { pattern: new RegExp('\[а-яА-Я\]')} }
-      // {patterns:
-      //   {
-      //     '0':
-      //       {
-      //         pattern: new RegExp('\[а-яА-Я\]')
-      //       }
-      //   }
-      // })
-    )
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],
