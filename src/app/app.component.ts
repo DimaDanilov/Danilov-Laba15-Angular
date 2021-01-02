@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import {
   MyWorker,
-  MyWorkersDatabase,
   MyWorkerType,
-} from './shared/worker.model';
-
+} from './shared/models/worker.model';
+import { WorkersService } from './shared/services/workers.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,8 +11,17 @@ import {
 })
 export class AppComponent {
   title = 'Список сотрудников';
-  workers: MyWorker[] = MyWorkersDatabase;
+  workers: MyWorker[];
   myWorkerType = MyWorkerType;
+
+  constructor(
+    private workersService: WorkersService
+  ){}
+
+  ngOnInit(): void {
+    this.workers = this.workersService.MyWorkersDatabase;
+    console.log(this.workers);
+  }
 
   getByType(type: number) {
     return this.workers.filter((worker) => worker.type === type);

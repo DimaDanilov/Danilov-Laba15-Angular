@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "laba13": {
+    "laba14": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/laba13",
+            "outputPath": "dist/laba14",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -61,18 +61,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "laba13:build"
+            "browserTarget": "laba14:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "laba13:build:production"
+              "browserTarget": "laba14:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "laba13:build"
+            "browserTarget": "laba14:build"
           }
         },
         "test": {
@@ -109,16 +109,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "laba13:serve"
+            "devServerTarget": "laba14:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "laba13:serve:production"
+              "devServerTarget": "laba14:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "laba13"
+  "defaultProject": "laba14"
 }
