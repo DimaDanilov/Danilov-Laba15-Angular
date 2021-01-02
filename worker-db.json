@@ -1,0 +1,67 @@
+{
+  "workers": [
+    {
+      "name": "Иван",
+      "surname": "Иванов",
+      "type": 0,
+      "phone_number": "+7 (916) 888-55-22",
+      "id": 1
+    },
+    {
+      "name": "Петр",
+      "surname": "Петров",
+      "type": 1,
+      "phone_number": "+7 (501) 345-54-22",
+      "id": 2
+    },
+    {
+      "name": "Сидор",
+      "surname": "Сидоров",
+      "type": 2,
+      "phone_number": "+7 (412) 964-42-11",
+      "id": 3
+    },
+    {
+      "name": "Василий",
+      "surname": "Васильев",
+      "type": 3,
+      "phone_number": "+7 (263) 123-45-59",
+      "id": 4
+    },
+    {
+      "name": "Саня",
+      "surname": "Пупкин",
+      "type": 0,
+      "phone_number": "+7 (512) 123-12-31",
+      "id": 5
+    },
+    {
+      "name": "Александр",
+      "surname": "Пушкин",
+      "type": 0,
+      "phone_number": "+7 (634) 522-12-42",
+      "id": 6
+    },
+    {
+      "name": "Kirill",
+      "surname": "TheKing",
+      "type": 1,
+      "phone_number": "+7 (515) 327-12-54",
+      "id": 7
+    },
+    {
+      "name": "Дмитрий",
+      "surname": "Данилов",
+      "type": 1,
+      "phone_number": "+7 (845) 231-14-93",
+      "id": 8
+    },
+    {
+      "name": "Кирилл",
+      "surname": "Гекман",
+      "type": 2,
+      "phone_number": "+7 (241) 323-52-31",
+      "id": 9
+    }
+  ]
+}

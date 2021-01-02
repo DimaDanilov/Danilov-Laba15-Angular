@@ -1,56 +1,67 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {
   MyWorker,
   MyWorkerType,
 } from './shared/models/worker.model';
-import { WorkersService } from './shared/services/workers.service';
+import { HttpWorkerService } from './shared/services/http-worker.service';
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'Список сотрудников';
-  workers: MyWorker[];
+  workers: MyWorker[] = [];
   myWorkerType = MyWorkerType;
 
   constructor(
-    private workersService: WorkersService
+    private httpWorkerService: HttpWorkerService
   ){}
 
   ngOnInit(): void {
-    this.workers = this.workersService.MyWorkersDatabase;
-    console.log(this.workers);
+    this.getData();
   }
 
-  getByType(type: number) {
-    return this.workers.filter((worker) => worker.type === type);
-  }
-
-  onDeleteById(id: number) {
-    let index = this.workers.findIndex((worker) => worker.id === id);
-    if (index !== -1) {
-      this.workers.splice(index, 1);
+  async getData(){
+    try {
+      this.workers = await this.httpWorkerService.getWorkers();
+    } catch(err){
+      console.error(err);
     }
   }
 
-  onAddWorker(worker) {
-    let id =
-      this.workers.length > 0
-        ? this.workers[this.workers.length - 1].id + 1
-        : 0;
-    worker.id = id;
-    this.workers.push(worker);
-    console.log(worker);
+  getByType(type: number) {
+    return this.workers.filter((worker) => worker.type === type);    
   }
 
-  onEditById(new_worker){
-    let worker_erase = this.workers.find(worker => worker.id === new_worker.id) //найти нужный элемент в массиве
-    this.workers.splice(this.workers.indexOf(worker_erase),1); //удалить старый элемент из массива
-    this.workers.push(new_worker); //запушить новый
-    this.workers.sort(function(a,b) {return (a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0);} ); //отсортировать массив по id
+  async onDeleteById(id: number) {
+    try {
+      await this.httpWorkerService.deleteWorker(id);
+    } catch (error) {
+    } finally {
+      this.getData();
+    }
   }
 
-  
+  async onAddWorker(event: MyWorker) {
+    try {
+      await this.httpWorkerService.postWorker(event);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.getData();
+    }
+  }
 
+  async onEditById(worker: MyWorker){
+    try {
+      await this.httpWorkerService.editWorker(worker.id, worker);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.getData();
+    }
+  }
 }

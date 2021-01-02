@@ -8,6 +8,7 @@ import { TableWorkersComponent } from './ui/table-workers/table-workers.componen
 import { AddformWorkerComponent } from './ui/addform-worker/addform-worker.component';
 import { EditformWorkerComponent } from './ui/editform-worker/editform-worker.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -20,7 +21,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     ReactiveFormsModule,
     NgbModule,
     BrowserAnimationsModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
