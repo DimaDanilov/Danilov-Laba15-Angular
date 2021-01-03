@@ -13,10 +13,7 @@
             <th scope="col"></th>
           </tr>
         </thead>
-        <div class="col-12">
-          <input type="text" class="form-control" [(ngModel)]="searchStr">
-        </div>
-        <tbody *ngFor="let worker of workers | searchFilter: searchStr">
+        <tbody *ngFor="let worker of workers">
             <tr>
               <th scope="row">{{ worker.id }}</th>
               <td >{{ worker.name }}</td>

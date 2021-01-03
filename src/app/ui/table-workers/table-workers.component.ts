@@ -17,7 +17,6 @@ export class TableWorkersComponent implements OnInit {
   @Output() editWorker = new EventEmitter<number>();
 
   display=[];
-  searchStr = '';
  
   constructor() {}
 
