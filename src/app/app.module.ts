@@ -9,12 +9,13 @@ import { AddformWorkerComponent } from './ui/addform-worker/addform-worker.compo
 import { EditformWorkerComponent } from './ui/editform-worker/editform-worker.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { SearchFilterPipe } from './shared/pipes/search-filter.pipe';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 
 @NgModule({
-  declarations: [AppComponent, TableWorkersComponent, AddformWorkerComponent, EditformWorkerComponent],
+  declarations: [AppComponent, TableWorkersComponent, AddformWorkerComponent, EditformWorkerComponent, SearchFilterPipe],
   imports: [
     BrowserModule,
     FormsModule,
@@ -22,7 +23,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     NgbModule,
     BrowserAnimationsModule,
     NgxMaskModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
