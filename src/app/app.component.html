@@ -6,7 +6,7 @@
   </div>
   <app-addform-worker (addWorker)="onAddWorker($event)"></app-addform-worker>
   <div class="col-12">
-    <input type="text" class="form-control" [(ngModel)]="searchStr">
+    <input type="text" class="form-control mb-3" [(ngModel)]="searchStr" placeholder="Поиск">
   </div>
   <app-table-workers 
     [title]="'Программисты'"
